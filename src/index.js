@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PokémonList from './components/PokémonList';
 import './index.css';
-import PokémonList from './PokémonList';
 
 ReactDOM.render(
   <React.StrictMode>

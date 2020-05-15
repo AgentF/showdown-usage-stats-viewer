@@ -1,6 +1,6 @@
 import React from 'react';
 import Pokémon from './Pokémon';
-import rawData from './data/gen8ou-1695.json';
+import rawData from '../../data/gen8ou-1695.json';
 import './PokémonList.css';
 
 const data = { pokemons: [] };
@@ -112,9 +112,9 @@ function PokémonList() {
   return (
     <>
       <div className="title-container">
-        <h1>{`${tier} Gen ${gen}`}</h1>
-        <h1>April 2020</h1>
-        <h1>{`GXE ${cutoff}`}</h1>
+        <h2>{`${tier} Gen ${gen}`}</h2>
+        <h2>April 2020</h2>
+        <h2>{`GXE ${cutoff}`}</h2>
       </div>
       <ul className="pokemons">
         {data.pokemons
@@ -152,7 +152,6 @@ function PokémonList() {
     </>
   );
 }
-
 /*
 const dataExample = {
   info: {
@@ -164,17 +163,17 @@ const dataExample = {
   },
   data: {
     pokemon: {
-      'Raw count': number,
-      usage: number,
-      'Viability Ceiling': [number, number, number, number], 
+      'Raw count': 'number',
+      usage: 'number',
+      'Viability Ceiling': '[number, number, number, number]', 
       // num GXE, max GXE, 1% GXE, 20% GXE
-      Abilities: { [ability: string]: number },
-      Items: { [item: string]: number },
-      Spreads: { [spread: string]: number },
-      Happiness: { [happiness: string]: number },
-      Moves: { [move: string]: number },
-      Teammates: { [pokemon: string]: number },
-      'Checks and Counters': { [pokemon: string]: [n, p, d] },
+      Abilities: '{ [ability: string]: number }',
+      Items: '{ [item: string]: number }',
+      Spreads: '{ [spread: string]: number }',
+      Happiness: '{ [happiness: string]: number }',
+      Moves: '{ [move: string]: number }',
+      Teammates: '{ [pokemon: string]: number }',
+      'Checks and Counters': '{ [pokemon: string]: [n, p, d] }',
       // n = sum(POKE1_KOED...DOUBLE_SWITCH)
       // p = POKE1_KOED + POKE1_SWITCHED_OUT / n
       // d = sqrt((p * (1 - p)) / n)
@@ -182,5 +181,4 @@ const dataExample = {
   },
 };
 */
-
 export default PokémonList;
