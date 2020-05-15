@@ -1,0 +1,14 @@
+div.title-container {
+  background-color: rgba(0, 0, 0, 5);
+  color: rgba(255, 255, 255, 4);
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+ul.pokemons {
+  list-style: none;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 1rem;
+}
