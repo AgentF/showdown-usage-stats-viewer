@@ -36,6 +36,11 @@ const openInSmogon = (name) => {
   );
 };
 
+const percentCalc = (number, base) => {
+  const calc = `${(number * 100) / base}`;
+  return `${calc.substring(0, 4)}%`;
+};
+
 function Pokémon({
   abilities,
   checksAndCounters,
@@ -105,33 +110,27 @@ function Pokémon({
           <div className="stat-container" id="abilities">
             <h3 className="stat-title">Abilities:</h3>
             <ul className="stat-list">
-              {abilities.map(({ ability, usage: abilityUsage }) => {
-                const usePercentage = (abilityUsage * 100) / rawCount;
-                return (
-                  <li className="stat-list-element">
-                    <span className="stat">{`${ability}:`}</span>
-                    <span className="stat">
-                      {`${usePercentage}`.substring(0, 4)}%
-                    </span>
-                  </li>
-                );
-              })}
+              {abilities.map(({ ability, usage: abilityUsage }) => (
+                <li className="stat-list-element">
+                  <span className="stat">{`${ability}:`}</span>
+                  <span className="stat">
+                    {percentCalc(abilityUsage, rawCount)}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="stat-container">
             <h3 className="stat-title">Most used items:</h3>
             <ul className="stat-list">
-              {items.map(({ item, usage: itemUsage }) => {
-                const usePercentage = (itemUsage * 100) / rawCount;
-                return (
-                  <li className="stat-list-element">
-                    <span className="stat">{`${item}:`}</span>
-                    <span className="stat">
-                      {`${usePercentage}`.substring(0, 4)}%
-                    </span>
-                  </li>
-                );
-              })}
+              {items.map(({ item, usage: itemUsage }) => (
+                <li className="stat-list-element">
+                  <span className="stat">{`${item}:`}</span>
+                  <span className="stat">
+                    {percentCalc(itemUsage, rawCount)}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="stat-container" id="spread">
@@ -147,38 +146,31 @@ function Pokémon({
                   spDef,
                   speed,
                   usage: spreadUsage,
-                }) => {
-                  const usePercentage = (spreadUsage * 100) / rawCount;
-                  return (
-                    <li className="stat-list-element">
-                      <span className="stat">{`${nature}:`}</span>
-                      <span className="stat">
-                        {hp}/{attack}/{defense}/{spAtk}/{spDef}/{speed}
-                      </span>
-                      <span className="stat">
-                        {`${usePercentage}`.substring(0, 4)}%
-                      </span>
-                    </li>
-                  );
-                },
+                }) => (
+                  <li className="stat-list-element">
+                    <span className="stat">{`${nature}:`}</span>
+                    <span className="stat">
+                      {`${hp}/${attack}/${defense}/${spAtk}/${spDef}/${speed}`}
+                    </span>
+                    <span className="stat">
+                      {percentCalc(spreadUsage, rawCount)}
+                    </span>
+                  </li>
+                ),
               )}
             </ul>
           </div>
           <div className="stat-container">
             <h3 className="stat-title">Most used moves:</h3>
             <ul className="stat-list">
-              {moves.map(({ move, usage: moveUsage }) => {
-                const usePercentage = (moveUsage * 100) / rawCount;
-                const displayMove = move ? move : 'Empty';
-                return (
-                  <li className="stat-list-element">
-                    <span className="stat">{`${displayMove}:`}</span>
-                    <span className="stat">
-                      {`${usePercentage}`.substring(0, 4)}%
-                    </span>
-                  </li>
-                );
-              })}
+              {moves.map(({ move, usage: moveUsage }) => (
+                <li className="stat-list-element">
+                  <span className="stat">{`${move}:`}</span>
+                  <span className="stat">
+                    {percentCalc(moveUsage, rawCount)}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
         </>
@@ -186,26 +178,21 @@ function Pokémon({
       {page === 1 && (
         <div className="stat-container">
           <ul className="stat-grid">
-            {teammates.map(({ teammate, usage: teammateUsage }) => {
-              const usePercentage = `${
-                (teammateUsage * 100) / rawCount
-              }`.substring(0, 4);
-              return (
-                <li className="stat-grid-cel" title={teammate}>
-                  <button
-                    className="image-button"
-                    type="button"
-                    onClick={() => openInSmogon(teammate)}
-                  >
-                    <img
-                      className="pokemon-icon"
-                      src={getPokemonSprite(teammate, true)}
-                      alt={`${teammate} Icon`}
-                    />
-                  </button>
-                </li>
-              );
-            })}
+            {teammates.map(({ teammate }) => (
+              <li className="stat-grid-cel" title={teammate}>
+                <button
+                  className="image-button"
+                  type="button"
+                  onClick={() => openInSmogon(teammate)}
+                >
+                  <img
+                    className="pokemon-icon"
+                    src={getPokemonSprite(teammate, true)}
+                    alt={`${teammate} Icon`}
+                  />
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
       )}
