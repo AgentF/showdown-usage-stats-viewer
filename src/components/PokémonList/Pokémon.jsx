@@ -70,7 +70,7 @@ function Pokémon({
   items,
   moves,
   name,
-  number,
+  position,
   rawCount,
   spreads,
   teammates,
@@ -84,7 +84,7 @@ function Pokémon({
     <li className="pokemon">
       <h2 className="pokemon-title">{name}</h2>
       <strong className="number">
-        {usage > 0.03406367107 ? number : '--'}
+        {usage > 0.03406367107 ? position : '--'}
       </strong>
       <strong className="usage">{`${readableUsage}%`}</strong>
       <button
@@ -283,7 +283,7 @@ Pokémon.propTypes = {
     }),
   ).isRequired,
   name: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
+  position: PropTypes.number.isRequired,
   rawCount: PropTypes.number.isRequired,
   spreads: PropTypes.arrayOf(
     PropTypes.shape({

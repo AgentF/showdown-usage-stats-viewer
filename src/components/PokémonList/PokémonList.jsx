@@ -19,22 +19,21 @@ function PokémonList() {
         {data.pokemons
           .slice(0, 60)
           .map(
-            (
-              {
-                abilities,
-                checksAndCounters,
-                items,
-                moves,
-                name,
-                rawCount,
-                spreads,
-                teammates,
-                usage,
-              },
-              i,
-            ) => (
+            ({
+              position,
+              abilities,
+              checksAndCounters,
+              items,
+              moves,
+              name,
+              rawCount,
+              spreads,
+              teammates,
+              usage,
+            }) => (
               <Pokémon
-                number={i + 1}
+                key={position}
+                position={position}
                 abilities={abilities}
                 checksAndCounters={checksAndCounters.slice(0, 18)}
                 items={items.slice(0, 3)}
