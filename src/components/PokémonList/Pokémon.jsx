@@ -41,6 +41,29 @@ const percentCalc = (number, base) => {
   return `${calc.substring(0, 4)}%`;
 };
 
+const spreadString = ({ hp, attack, defense, spAtk, spDef, speed }) => {
+  const spread = [];
+  if (hp > 0) {
+    spread.push(`${hp} HP`);
+  }
+  if (attack > 0) {
+    spread.push(`${attack} Atk`);
+  }
+  if (defense > 0) {
+    spread.push(`${defense} Def`);
+  }
+  if (spAtk > 0) {
+    spread.push(`${spAtk} SpA`);
+  }
+  if (spDef > 0) {
+    spread.push(`${spDef} SpD`);
+  }
+  if (speed > 0) {
+    spread.push(`${speed} Spe`);
+  }
+  return spread.join(' / ');
+};
+
 function Pokémon({
   abilities,
   checksAndCounters,
@@ -65,7 +88,7 @@ function Pokémon({
       </strong>
       <strong className="usage">{`${readableUsage}%`}</strong>
       <button
-        className="image-button"
+        className="sprite-button"
         type="button"
         onClick={() => openInSmogon(name)}
       >
@@ -102,7 +125,7 @@ function Pokémon({
           onClick={() => setPage(2)}
           disabled={page === 2}
         >
-          Checks and Counters
+          Checks / Counters
         </button>
       </div>
       {page === 0 && (
@@ -147,15 +170,26 @@ function Pokémon({
                   speed,
                   usage: spreadUsage,
                 }) => (
-                  <li className="stat-list-element">
-                    <span className="stat">{`${nature}:`}</span>
-                    <span className="stat">
-                      {`${hp}/${attack}/${defense}/${spAtk}/${spDef}/${speed}`}
-                    </span>
-                    <span className="stat">
-                      {percentCalc(spreadUsage, rawCount)}
-                    </span>
-                  </li>
+                  <>
+                    <li className="stat-list-element">
+                      <span className="stat">{`${nature} nature`}</span>
+                      <span className="stat">
+                        {percentCalc(spreadUsage, rawCount)}
+                      </span>
+                    </li>
+                    <li className="stat-list-element">
+                      <span className="stat">
+                        {spreadString({
+                          hp,
+                          attack,
+                          defense,
+                          spAtk,
+                          spDef,
+                          speed,
+                        })}
+                      </span>
+                    </li>
+                  </>
                 ),
               )}
             </ul>
@@ -181,7 +215,7 @@ function Pokémon({
             {teammates.map(({ teammate }) => (
               <li className="stat-grid-cel" title={teammate}>
                 <button
-                  className="image-button"
+                  className="icon-button"
                   type="button"
                   onClick={() => openInSmogon(teammate)}
                 >
@@ -202,7 +236,7 @@ function Pokémon({
             {checksAndCounters.map(({ checkOrCounter }) => (
               <li className="stat-grid-cel" title={checkOrCounter}>
                 <button
-                  className="image-button"
+                  className="icon-button"
                   type="button"
                   onClick={() => openInSmogon(checkOrCounter)}
                 >

@@ -118,7 +118,7 @@ function PokémonList() {
       </div>
       <ul className="pokemons">
         {data.pokemons
-          .slice(0, 36)
+          .slice(0, 40)
           .map(
             (
               {
@@ -138,11 +138,11 @@ function PokémonList() {
                 number={i + 1}
                 abilities={abilities}
                 checksAndCounters={checksAndCounters.slice(0, 18)}
-                items={items.slice(0, 5)}
-                moves={moves.slice(0, 6)}
+                items={items.slice(0, 3)}
+                moves={moves.slice(0, 4)}
                 name={name}
                 rawCount={rawCount}
-                spreads={spreads.slice(0, 6)}
+                spreads={spreads.slice(0, 3)}
                 teammates={teammates.slice(0, 18)}
                 usage={usage}
               />

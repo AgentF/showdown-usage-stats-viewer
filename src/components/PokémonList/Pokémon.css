@@ -1,6 +1,6 @@
 li.pokemon {
   --spriteSize: 100px;
-  --iconSize: 75px;
+  --iconSize: 70px;
   position: relative;
   padding: 0.5rem 0 0;
   background-color: rgba(0, 0, 0, 0.2);
@@ -11,7 +11,7 @@ li.pokemon {
 }
 
 h2.pokemon-title {
-  margin: 0 0 1rem 0.5rem;
+  margin: 0 0 0.5rem 0.5rem;
   align-self: flex-start;
 }
 
@@ -27,27 +27,35 @@ strong.number {
 strong.usage {
   color: rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: 7.5rem;
+  top: 6.5rem;
   right: 0.5rem;
   font-size: 2.5rem;
   z-index: -1;
 }
 
 h3.stat-title {
-  margin: 0 0 0 0.5rem;
-}
-
-button.expand-button {
-  position: absolute;
-  top: 5px;
-  right: 0;
+  margin: 0 0 0.2rem 0.5rem;
 }
 
 img.pokemon-sprite {
-  height: var(--spriteSize);
+  max-height: var(--spriteSize);
   width: auto;
-  margin: 0 0 1rem 0.5rem;
   cursor: pointer;
+}
+
+button.sprite-button {
+  height: var(--spriteSize);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 0 0.5rem 0;
+}
+
+li.pokemon > button.sprite-button {
+  align-self: flex-start;
 }
 
 img.pokemon-icon {
@@ -56,13 +64,13 @@ img.pokemon-icon {
   cursor: pointer;
 }
 
-button.image-button {
+button.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
   border: none;
   cursor: pointer;
-}
-li.pokemon > button.image-button {
-  align-self: flex-start;
 }
 
 div.tab-wrapper {
@@ -80,7 +88,7 @@ button.info-tab {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: bold;
   cursor: pointer;
 }
@@ -102,12 +110,17 @@ div.stat-container:nth-child(even) {
 
 div.stat-container#abilities {
   justify-content: flex-start;
-  height: 75px;
+  height: calc(75px + 0.6rem);
 }
+
 ul.stat-list {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+ul.stat-list > li.stat-list-element:not(:last-child) {
+  margin-bottom: 0.2rem;
 }
 
 li.stat-list-element {
