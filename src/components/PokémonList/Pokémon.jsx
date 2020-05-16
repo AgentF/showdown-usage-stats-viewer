@@ -109,7 +109,7 @@ function Pokémon({
           onClick={() => setPage(0)}
           disabled={page === 0}
         >
-          Pokémon
+          Info
         </button>
         <button
           className="info-tab"
@@ -131,11 +131,11 @@ function Pokémon({
       {page === 0 && (
         <>
           <div className="stat-container" id="abilities">
-            <h3 className="stat-title">Abilities:</h3>
+            <h3 className="stat-title">Abilities</h3>
             <ul className="stat-list">
               {abilities.map(({ ability, usage: abilityUsage }) => (
                 <li className="stat-list-element">
-                  <span className="stat">{`${ability}:`}</span>
+                  <span className="stat">{`${ability}`}</span>
                   <span className="stat">
                     {percentCalc(abilityUsage, rawCount)}
                   </span>
@@ -144,11 +144,11 @@ function Pokémon({
             </ul>
           </div>
           <div className="stat-container">
-            <h3 className="stat-title">Most used items:</h3>
+            <h3 className="stat-title">Most used items</h3>
             <ul className="stat-list">
               {items.map(({ item, usage: itemUsage }) => (
                 <li className="stat-list-element">
-                  <span className="stat">{`${item}:`}</span>
+                  <span className="stat">{`${item}`}</span>
                   <span className="stat">
                     {percentCalc(itemUsage, rawCount)}
                   </span>
@@ -157,7 +157,7 @@ function Pokémon({
             </ul>
           </div>
           <div className="stat-container" id="spread">
-            <h3 className="stat-title">Spreads:</h3>
+            <h3 className="stat-title">Spreads</h3>
             <ul className="stat-list">
               {spreads.map(
                 ({
@@ -195,11 +195,11 @@ function Pokémon({
             </ul>
           </div>
           <div className="stat-container">
-            <h3 className="stat-title">Most used moves:</h3>
+            <h3 className="stat-title">Most used moves</h3>
             <ul className="stat-list">
               {moves.map(({ move, usage: moveUsage }) => (
                 <li className="stat-list-element">
-                  <span className="stat">{`${move}:`}</span>
+                  <span className="stat">{`${move}`}</span>
                   <span className="stat">
                     {percentCalc(moveUsage, rawCount)}
                   </span>

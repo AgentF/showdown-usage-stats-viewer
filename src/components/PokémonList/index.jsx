@@ -3,7 +3,6 @@ import PokémonList from './PokémonList';
 
 /*
 
-const limit = 30;
 const data = { pokemons: [] };
 data.info = rawData.info;
 
@@ -18,8 +17,7 @@ pokemonNames.forEach((pokemonName) => {
   const pokemonTeamMatesNames = Object.keys(
     rawData.data[pokemonName].Teammates,
   );
-  pokemonTeamMatesNames.forEach((teammate, i) => {
-    if (i >= limit) return;
+  pokemonTeamMatesNames.forEach((teammate) => {
     pokemon.teammates.push({
       teammate,
       usage: rawData.data[pokemonName].Teammates[teammate],
@@ -32,8 +30,7 @@ pokemonNames.forEach((pokemonName) => {
   const pokemonChecksAndCountersNames = Object.keys(
     rawData.data[pokemonName]['Checks and Counters'],
   );
-  pokemonChecksAndCountersNames.forEach((checkOrCounter, i) => {
-    if (i >= limit) return;
+  pokemonChecksAndCountersNames.forEach((checkOrCounter) => {
     pokemon.checksAndCounters.push({
       checkOrCounter,
       matchup:
@@ -55,8 +52,7 @@ pokemonNames.forEach((pokemonName) => {
   );
   pokemon.items = [];
   const itemsNames = Object.keys(rawData.data[pokemonName].Items);
-  itemsNames.forEach((item, i) => {
-    if (i >= limit) return;
+  itemsNames.forEach((item) => {
     pokemon.items.push({
       item,
       usage: rawData.data[pokemonName].Items[item],
@@ -65,8 +61,7 @@ pokemonNames.forEach((pokemonName) => {
   pokemon.items.sort(({ usage: usageA }, { usage: usageB }) => usageB - usageA);
   pokemon.spreads = [];
   const spreadStrings = Object.keys(rawData.data[pokemonName].Spreads);
-  spreadStrings.forEach((spreadString, i) => {
-    if (i >= limit) return;
+  spreadStrings.forEach((spreadString) => {
     const [nature, evSpread] = spreadString.split(':');
     const [hp, attack, defense, spAtk, spDef, speed] = evSpread.split('/');
     pokemon.spreads.push({
@@ -86,8 +81,7 @@ pokemonNames.forEach((pokemonName) => {
   );
   pokemon.moves = [];
   const movesNames = Object.keys(rawData.data[pokemonName].Moves);
-  movesNames.forEach((move, i) => {
-    if (i >= limit) return;
+  movesNames.forEach((move) => {
     pokemon.moves.push({
       move,
       usage: rawData.data[pokemonName].Moves[move],
@@ -96,8 +90,7 @@ pokemonNames.forEach((pokemonName) => {
   pokemon.moves.sort(({ usage: usageA }, { usage: usageB }) => usageB - usageA);
   pokemon.abilities = [];
   const abilitiesName = Object.keys(rawData.data[pokemonName].Abilities);
-  abilitiesName.forEach((ability, i) => {
-    if (i >= limit) return;
+  abilitiesName.forEach((ability) => {
     pokemon.abilities.push({
       ability,
       usage: rawData.data[pokemonName].Abilities[ability],
@@ -110,6 +103,13 @@ pokemonNames.forEach((pokemonName) => {
 });
 
 data.pokemons.sort(({ usage: usageA }, { usage: usageB }) => usageB - usageA);
+data.pokemons.forEach((pokemon) => {
+  pokemon.moves = pokemon.moves.slice(0, 10);
+  pokemon.spreads = pokemon.spreads.slice(0, 10);
+  pokemon.items = pokemon.items.slice(0, 10);
+  pokemon.checksAndCounters = pokemon.checksAndCounters.slice(0, 30);
+  pokemon.teammates = pokemon.teammates.slice(0, 30);
+});
 
 console.log(JSON.stringify(data));
 */

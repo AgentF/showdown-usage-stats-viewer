@@ -17,7 +17,7 @@ function PokémonList() {
       </div>
       <ul className="pokemons">
         {data.pokemons
-          .slice(0, 40)
+          .slice(0, 60)
           .map(
             (
               {
