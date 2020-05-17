@@ -60,7 +60,7 @@ li.pokemon > button.sprite-button {
 
 img.pokemon-icon {
   height: var(--iconSize);
-  width: var(--iconSize);
+  width: auto;
   cursor: pointer;
 }
 
