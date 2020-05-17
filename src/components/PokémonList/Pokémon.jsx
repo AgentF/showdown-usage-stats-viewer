@@ -172,21 +172,21 @@ function Pokémon({
                 }) => (
                   <>
                     <li className="stat-list-element">
-                      <span className="stat">{`${nature} nature`}</span>
                       <span className="stat">
-                        {percentCalc(spreadUsage, rawCount)}
-                      </span>
-                    </li>
-                    <li className="stat-list-element">
-                      <span className="stat">
-                        {spreadString({
+                        {`EVs: ${spreadString({
                           hp,
                           attack,
                           defense,
                           spAtk,
                           spDef,
                           speed,
-                        })}
+                        })}`}
+                      </span>
+                    </li>
+                    <li className="stat-list-element">
+                      <span className="stat">{`${nature} Nature`}</span>
+                      <span className="stat">
+                        {percentCalc(spreadUsage, rawCount)}
                       </span>
                     </li>
                   </>

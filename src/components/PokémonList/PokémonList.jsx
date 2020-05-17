@@ -36,8 +36,8 @@ function PokémonList() {
                 position={position}
                 abilities={abilities}
                 checksAndCounters={checksAndCounters.slice(0, 18)}
-                items={items.slice(0, 3)}
-                moves={moves.slice(0, 4)}
+                items={items.slice(0, 4)}
+                moves={moves.slice(0, 5)}
                 name={name}
                 rawCount={rawCount}
                 spreads={spreads.slice(0, 3)}
