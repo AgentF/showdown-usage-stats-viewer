@@ -83,9 +83,7 @@ function Pokémon({
   return (
     <li className="pokemon">
       <h2 className="pokemon-title">{name}</h2>
-      <strong className="number">
-        {usage > 0.03406367107 ? position : '--'}
-      </strong>
+      <strong className="number">{position}</strong>
       <strong className="usage">{`${readableUsage}%`}</strong>
       <button
         className="sprite-button"

@@ -4,7 +4,7 @@ import data from '../../data/testData.json';
 import './PokémonList.css';
 
 function PokémonList() {
-  const { cutoff, metagame } = data.info;
+  const { metagame } = data.info;
   const tier = metagame.substring(4).toUpperCase();
   const gen = metagame.substring(3, 4);
 
@@ -12,40 +12,37 @@ function PokémonList() {
     <>
       <div className="title-container">
         <h2>{`${tier} Gen ${gen}`}</h2>
-        <h2>April 2020</h2>
-        <h2>{`GXE ${cutoff}`}</h2>
+        <h2>May 2020</h2>
       </div>
       <ul className="pokemons">
-        {data.pokemons
-          .slice(0, 60)
-          .map(
-            ({
-              position,
-              abilities,
-              checksAndCounters,
-              items,
-              moves,
-              name,
-              rawCount,
-              spreads,
-              teammates,
-              usage,
-            }) => (
-              <Pokémon
-                key={position}
-                position={position}
-                abilities={abilities}
-                checksAndCounters={checksAndCounters.slice(0, 18)}
-                items={items.slice(0, 4)}
-                moves={moves.slice(0, 5)}
-                name={name}
-                rawCount={rawCount}
-                spreads={spreads.slice(0, 3)}
-                teammates={teammates.slice(0, 18)}
-                usage={usage}
-              />
-            ),
-          )}
+        {data.pokemons.map(
+          ({
+            position,
+            abilities,
+            checksAndCounters,
+            items,
+            moves,
+            name,
+            rawCount,
+            spreads,
+            teammates,
+            usage,
+          }) => (
+            <Pokémon
+              key={position}
+              position={position}
+              abilities={abilities}
+              checksAndCounters={checksAndCounters.slice(0, 18)}
+              items={items.slice(0, 4)}
+              moves={moves.slice(0, 5)}
+              name={name}
+              rawCount={rawCount}
+              spreads={spreads.slice(0, 3)}
+              teammates={teammates.slice(0, 18)}
+              usage={usage}
+            />
+          ),
+        )}
       </ul>
     </>
   );
