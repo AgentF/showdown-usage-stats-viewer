@@ -1,6 +1,6 @@
 # Pokémon stats!
 
-This is stats viewer for the Pokémon Showdown usage stats, the data, icons, sprites and images of Pokémons are from Smogon.
+This is a stats viewer for the Pokémon Showdown usage stats, the data, icons, sprites and images of Pokémons are from Smogon.
 
 My goal is to make competitive Pokémon data and info more accesible because there's a vast cuantity of data and info, yet it's really complicated get into competitive and once there it isn't very easy to get into the top ladder or staying there, and yes I know the raking sistem's goal is to filter out trolls and match you with and equally "good" player so in a perfect world every one goes 50%-50% all matches.
 
