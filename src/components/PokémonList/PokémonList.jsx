@@ -1,21 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pokémon from './Pokémon';
+import PokémonOverview from './PokémonOverview';
 import data from '../../data/testData.json';
 import './PokémonList.css';
 
 function PokémonList() {
+  const [selectedPokémon, setSelectedPokémon] = useState(1);
   const { metagame } = data.info;
   const tier = metagame.substring(4).toUpperCase();
   const gen = metagame.substring(3, 4);
+  const pokémon = data.pokemons[selectedPokémon - 1];
+  const top10 = data.pokemons.slice(0, 10);
+  const top100 = data.pokemons.slice(10, 100);
 
   return (
-    <>
+    <div className="tier-list">
       <div className="title-container">
         <h2>{`${tier} Gen ${gen}`}</h2>
-        <h2>May 2020</h2>
       </div>
-      <ul className="pokemons">
-        {data.pokemons.map(
+      <Pokémon
+        position={pokémon.position}
+        abilities={pokémon.abilities}
+        checksAndCounters={pokémon.checksAndCounters.slice(0, 48)}
+        items={pokémon.items.slice(0, 4)}
+        moves={pokémon.moves.slice(0, 5)}
+        name={pokémon.name}
+        rawCount={pokémon.rawCount}
+        spreads={pokémon.spreads.slice(0, 3)}
+        teammates={pokémon.teammates.slice(0, 48)}
+        usage={pokémon.usage}
+      />
+      <ul className="top-10-pokemon">
+        {top10.map(
           ({
             position,
             abilities,
@@ -28,7 +44,39 @@ function PokémonList() {
             teammates,
             usage,
           }) => (
-            <Pokémon
+            <PokémonOverview
+              key={position}
+              position={position}
+              abilities={abilities}
+              checksAndCounters={checksAndCounters.slice(0, 48)}
+              items={items.slice(0, 4)}
+              moves={moves.slice(0, 5)}
+              name={name}
+              rawCount={rawCount}
+              spreads={spreads.slice(0, 3)}
+              teammates={teammates.slice(0, 48)}
+              usage={usage}
+              sprite
+              onClickHandler={() => setSelectedPokémon(position)}
+            />
+          ),
+        )}
+      </ul>
+      <ul className="top-100-pokemon">
+        {top100.map(
+          ({
+            position,
+            abilities,
+            checksAndCounters,
+            items,
+            moves,
+            name,
+            rawCount,
+            spreads,
+            teammates,
+            usage,
+          }) => (
+            <PokémonOverview
               key={position}
               position={position}
               abilities={abilities}
@@ -40,14 +88,17 @@ function PokémonList() {
               spreads={spreads.slice(0, 3)}
               teammates={teammates.slice(0, 18)}
               usage={usage}
+              sprite={false}
+              onClickHandler={() => setSelectedPokémon(position)}
             />
           ),
         )}
       </ul>
-    </>
+    </div>
   );
 }
 /*
+
 const dataExample = {
   info: {
     metagame: string,
@@ -76,4 +127,5 @@ const dataExample = {
   },
 };
 */
+
 export default PokémonList;

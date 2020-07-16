@@ -1,7 +1,9 @@
-li.pokemon {
+div.pokemon-detail {
   --spriteSize: 150px;
   --iconSize: 75px;
+  grid-area: detail;
   position: relative;
+  margin: 1rem;
   padding: 0.5rem 0 0;
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
@@ -39,7 +41,7 @@ h3.stat-title {
 
 img.pokemon-sprite {
   max-height: var(--spriteSize);
-  width: auto;
+  min-height: 100px;
   cursor: pointer;
 }
 
@@ -89,7 +91,6 @@ button.info-tab {
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-  font-weight: bold;
   cursor: pointer;
 }
 
@@ -110,7 +111,6 @@ div.stat-container:nth-child(even) {
 
 div.stat-container#abilities {
   justify-content: flex-start;
-  height: calc(75px + 0.6rem);
 }
 
 ul.stat-list {

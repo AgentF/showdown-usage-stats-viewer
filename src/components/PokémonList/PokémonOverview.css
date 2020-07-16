@@ -1,0 +1,45 @@
+li.pokemon-overview-wrapper {
+}
+
+button.pokemon-overview {
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  border: none;
+  margin: 0;
+  display: grid;
+  grid-template-areas:
+    'position img usage'
+    'name name name';
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+span.pokemon-position-overview {
+  grid-area: position;
+  font-size: 2rem;
+  justify-self: left;
+}
+img.pokemon-sprite-overview {
+  grid-area: img;
+  height: 75px;
+  align-self: center;
+  justify-self: center;
+}
+ul.top-10-pokemon img.pokemon-sprite-overview {
+  height: 100px;
+}
+
+h2.pokemon-name-overview {
+  grid-area: name;
+  margin: 0;
+  word-break: keep-all;
+  justify-self: center;
+}
+
+span.pokemon-usage-overview {
+  grid-area: usage;
+  font-size: 1.5rem;
+  justify-self: right;
+}

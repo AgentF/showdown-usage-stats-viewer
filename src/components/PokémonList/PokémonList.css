@@ -1,11 +1,28 @@
+div.tier-list {
+  display: grid;
+  grid-template-areas:
+    'header header header'
+    'detail top10 top10'
+    'top100 top100 top100';
+}
 div.title-container {
+  grid-area: header;
   background-color: rgba(0, 0, 0, 5);
   color: rgba(255, 255, 255, 4);
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;
 }
-ul.pokemons {
+ul.top-10-pokemon {
+  grid-area: top10;
+  list-style: none;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(275px, 100%), 1fr));
+  gap: 1rem;
+}
+ul.top-100-pokemon {
+  grid-area: top100;
   list-style: none;
   padding: 0 1rem;
   display: grid;

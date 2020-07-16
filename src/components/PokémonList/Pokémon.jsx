@@ -1,68 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import {
+  getSmogonSprite,
+  getSmogonLink,
+  getPercent,
+  getSpreadString,
+} from '../../utilities/helpers';
 import './Pokémon.css';
-
-const getPokemonSprite = (name, gen5Sprite = false) => {
-  const shinny = Math.floor(Math.random() * 512) === 0 ? '-shiny' : '';
-  let formattedName = name
-    .toLowerCase()
-    .split("'")
-    .join('')
-    .split('.')
-    .join('')
-    .split(':')
-    .join('')
-    .split(' ')
-    .join('');
-  if (
-    formattedName.includes('kommo') ||
-    formattedName.includes('hakamo') ||
-    formattedName.includes('jangmo')
-  ) {
-    formattedName = formattedName.split('-').join('');
-  }
-  if (gen5Sprite) {
-    formattedName = `https://play.pokemonshowdown.com/sprites/gen5${shinny}/${formattedName}.png`;
-  } else {
-    formattedName = `https://play.pokemonshowdown.com/sprites/ani${shinny}/${formattedName}.gif`;
-  }
-  return formattedName;
-};
-
-const openInSmogon = (name) => {
-  window.open(
-    `https://www.smogon.com/dex/ss/pokemon/${name.toLowerCase()}/`,
-    '_blank',
-  );
-};
-
-const percentCalc = (number, base) => {
-  const calc = `${(number * 100) / base}`;
-  return `${calc.substring(0, 4)}%`;
-};
-
-const spreadString = ({ hp, attack, defense, spAtk, spDef, speed }) => {
-  const spread = [];
-  if (hp > 0) {
-    spread.push(`${hp} HP`);
-  }
-  if (attack > 0) {
-    spread.push(`${attack} Atk`);
-  }
-  if (defense > 0) {
-    spread.push(`${defense} Def`);
-  }
-  if (spAtk > 0) {
-    spread.push(`${spAtk} SpA`);
-  }
-  if (spDef > 0) {
-    spread.push(`${spDef} SpD`);
-  }
-  if (speed > 0) {
-    spread.push(`${speed} Spe`);
-  }
-  return spread.join(' / ');
-};
 
 function Pokémon({
   abilities,
@@ -76,28 +20,24 @@ function Pokémon({
   teammates,
   usage,
 }) {
-  const [imageFallback, setImageFallBack] = useState(false);
   const [page, setPage] = useState(0);
 
   const readableUsage = `${usage * 100}`.substring(0, 4);
   return (
-    <li className="pokemon">
+    <div className="pokemon-detail">
       <h2 className="pokemon-title">{name}</h2>
       <strong className="number">{position}</strong>
       <strong className="usage">{`${readableUsage}%`}</strong>
       <button
         className="sprite-button"
         type="button"
-        onClick={() => openInSmogon(name)}
+        onClick={() => getSmogonLink(name)}
       >
         <img
           className="pokemon-sprite"
-          src={getPokemonSprite(name, imageFallback)}
+          src={getSmogonSprite(name)}
           title={name}
           alt={`${name} Sprite`}
-          onError={() => {
-            setImageFallBack(true);
-          }}
         />
       </button>
       <div className="tab-wrapper">
@@ -107,7 +47,7 @@ function Pokémon({
           onClick={() => setPage(0)}
           disabled={page === 0}
         >
-          Info
+          <span>Info</span>
         </button>
         <button
           className="info-tab"
@@ -115,7 +55,7 @@ function Pokémon({
           onClick={() => setPage(1)}
           disabled={page === 1}
         >
-          Teammates
+          <span>Teammates</span>
         </button>
         <button
           className="info-tab"
@@ -123,7 +63,7 @@ function Pokémon({
           onClick={() => setPage(2)}
           disabled={page === 2}
         >
-          Checks / Counters
+          <span>Checks / Counters</span>
         </button>
       </div>
       {page === 0 && (
@@ -135,7 +75,7 @@ function Pokémon({
                 <li className="stat-list-element">
                   <span className="stat">{`${ability}`}</span>
                   <span className="stat">
-                    {percentCalc(abilityUsage, rawCount)}
+                    {getPercent(abilityUsage, rawCount)}
                   </span>
                 </li>
               ))}
@@ -148,7 +88,7 @@ function Pokémon({
                 <li className="stat-list-element">
                   <span className="stat">{`${item}`}</span>
                   <span className="stat">
-                    {percentCalc(itemUsage, rawCount)}
+                    {getPercent(itemUsage, rawCount)}
                   </span>
                 </li>
               ))}
@@ -171,7 +111,7 @@ function Pokémon({
                   <>
                     <li className="stat-list-element">
                       <span className="stat">
-                        {`EVs: ${spreadString({
+                        {`EVs: ${getSpreadString({
                           hp,
                           attack,
                           defense,
@@ -184,7 +124,7 @@ function Pokémon({
                     <li className="stat-list-element">
                       <span className="stat">{`${nature} Nature`}</span>
                       <span className="stat">
-                        {percentCalc(spreadUsage, rawCount)}
+                        {getPercent(spreadUsage, rawCount)}
                       </span>
                     </li>
                   </>
@@ -199,7 +139,7 @@ function Pokémon({
                 <li className="stat-list-element">
                   <span className="stat">{`${move}`}</span>
                   <span className="stat">
-                    {percentCalc(moveUsage, rawCount)}
+                    {getPercent(moveUsage, rawCount)}
                   </span>
                 </li>
               ))}
@@ -215,11 +155,11 @@ function Pokémon({
                 <button
                   className="icon-button"
                   type="button"
-                  onClick={() => openInSmogon(teammate)}
+                  onClick={() => getSmogonLink(teammate)}
                 >
                   <img
                     className="pokemon-icon"
-                    src={getPokemonSprite(teammate, true)}
+                    src={getSmogonSprite(teammate, false)}
                     alt={`${teammate} Icon`}
                   />
                 </button>
@@ -236,11 +176,11 @@ function Pokémon({
                 <button
                   className="icon-button"
                   type="button"
-                  onClick={() => openInSmogon(checkOrCounter)}
+                  onClick={() => getSmogonLink(checkOrCounter)}
                 >
                   <img
                     className="pokemon-icon"
-                    src={getPokemonSprite(checkOrCounter, true)}
+                    src={getSmogonSprite(checkOrCounter, false)}
                     alt={`${checkOrCounter} Icon`}
                   />
                 </button>
@@ -249,7 +189,7 @@ function Pokémon({
           </ul>
         </div>
       )}
-    </li>
+    </div>
   );
 }
 
